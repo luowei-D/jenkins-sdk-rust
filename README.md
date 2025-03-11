@@ -9,7 +9,7 @@
     <img src="https://img.shields.io/crates/v/jenkins-sdk.svg" alt="crates.io version">
   </a>
   <a href="https://crates.io/crates/jenkins-sdk">
-    <img src="https://img.shields.io/crates/dr/jenkins-sdk?color=ba86eb&logo=Handshake&logoColor=ea6aa6" alt="crates.io downloads">
+    <img src="https://img.shields.io/crates/dr/jenkins-sdk?color=ba86eb" alt="crates.io downloads">
   </a>
   <a href="https://github.com/lvillis/jenkins-sdk-rust">
     <img src="https://img.shields.io/github/repo-size/lvillis/jenkins-sdk-rust?style=flat-square&color=328657" alt="repo size">

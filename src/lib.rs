@@ -220,11 +220,34 @@ impl JenkinsClient {
         params: &Value,
     ) -> Result<(), Box<dyn Error>> {
         let endpoint = format!("job/{}/buildWithParameters", job_name);
-        let response = self
-            .send_request(&endpoint, Method::POST, Some(params.to_string()))
-            .await?;
-        let status = response.status();
 
+        let form_params: std::collections::HashMap<String, String> = params
+            .as_object()
+            .ok_or("Parameters must be a JSON object")?
+            .iter()
+            .map(|(k, v)| {
+                let value = if v.is_string() {
+                    v.as_str().unwrap().to_owned()
+                } else {
+                    v.to_string()
+                };
+                (k.clone(), value)
+            })
+            .collect();
+
+        let response = self
+            .client
+            .post(format!("{}/{}", self.url, endpoint))
+            .basic_auth(&self.username, Some(&self.api_token))
+            .header(
+                USER_AGENT,
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+            )
+            .form(&form_params)
+            .send()
+            .await?;
+
+        let status = response.status();
         if !status.is_success() {
             let text = response.text().await?;
             return Err(format!("Request failed: status {}, response {}", status, text).into());
