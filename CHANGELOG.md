@@ -2,11 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.4] - 2025-03-11
+
+### 🐛 Bug Fixes
+
+- BuildWithParameters
+
+### ⚙️ Miscellaneous Tasks
+
+- *(docs)* Update README.md
+
 ## [0.1.3] - 2025-03-01
 
 ### ⚙️ Miscellaneous Tasks
 
 - Disable reqwest default features
+- Release jenkins-sdk version 0.1.3
 
 ## [0.1.2] - 2025-02-28
 
