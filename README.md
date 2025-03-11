@@ -15,7 +15,7 @@
     <img src="https://img.shields.io/github/repo-size/lvillis/jenkins-sdk-rust?style=flat-square&color=328657" alt="repo size">
   </a>
   <a href="https://github.com/lvillis/jenkins-sdk-rust/actions">
-    <img src="https://github.com/lvillis/jenkins-sdk-rust/actions/workflows/ci.yml/badge.svg" alt="build status">
+    <img src="https://github.com/lvillis/jenkins-sdk-rust/actions/workflows/ci.yaml/badge.svg" alt="build status">
   </a>
   <a href="mailto:lvillis@outlook.com?subject=Thanks%20for%20jenkins-sdk-rust!">
     <img src="https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg" alt="say thanks">
