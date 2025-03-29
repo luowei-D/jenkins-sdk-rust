@@ -24,61 +24,75 @@
 
 ---
 
-This project is a Jenkins API SDK written in Rust, designed to simplify interaction with Jenkins for Rust developers. The SDK supports asynchronous programming (via Tokio) and provides a unified interface to manage Jenkins jobs, queues, and executors efficiently.
+**jenkins-sdk-rust** is an ergonomic Rust SDK designed for interacting seamlessly with Jenkins APIs. Inspired by popular Rust SDKs such as the GitLab SDK, it provides a structured, idiomatic Rust API with support for both synchronous and asynchronous requests.
 
-## Features
+## ✨ Features
 
-- **Asynchronous Support**: Built on Tokio to support high concurrency.
-- **Unified Request Handling**: Simplified API interface for consistent and easy interactions.
-- **Detailed Documentation**: Clearly documented inputs and outputs for each method.
-- **Comprehensive Error Handling**: Robust error handling with meaningful messages for ease of debugging.
+- **Async & Sync Clients**: Support for both synchronous and asynchronous workflows using Tokio and Reqwest.
+- **Idiomatic Rust Interface**: Designed with clear traits and endpoint structures following Rust best practices.
+- **Flexible Response Handling**: Built-in support for JSON deserialization and raw text responses.
+- **Robust Error Handling**: Comprehensive error management with clear, descriptive error messages.
+- **Comprehensive Documentation**: Rich documentation compatible with `cargo doc`.
 
-## Implemented Interfaces
+## 🚀 Supported API Endpoints
 
 - **Job Management**
-  - [x] Retrieve Jobs Information
-  - [x] Retrieve Console Output
-  - [x] Trigger Builds with Parameters
-  - [x] Stop Builds
+  - [x] Retrieve jobs information
+  - [x] Fetch console logs
+  - [x] Trigger builds with parameters
+  - [x] Stop ongoing builds
 
 - **Queue Management**
-  - [x] Retrieve Build Queue Length
+  - [x] Retrieve build queue details
 
 - **Executor Management**
-  - [x] Retrieve Executors Information
+  - [x] Retrieve executor statistics and status
 
-## Installation
+## 📥 Installation
 
-Add the following to your `Cargo.toml`:
+Add this dependency to your `Cargo.toml`:
 
 ```toml
 [dependencies]
 jenkins-sdk = "0.1"
 ```
 
-## Quick Example
+## ⚡Quick Start
 
+### Async Example
 ```rust
-use jenkins_sdk::JenkinsClient;
-use serde_json::json;
+use jenkins_sdk::{JenkinsAsyncClient, AsyncQuery, JobsInfo};
+use tokio;
 
 #[tokio::main]
-async fn main() {
-    let client = JenkinsClient::new("https://jenkins.example.com", "username", "api_token");
+async fn main() -> Result<(), jenkins_sdk::JenkinsError> {
+  let client = JenkinsAsyncClient::new("https://jenkins.example.com", "username", "api_token");
 
-    match client.get_jobs_info().await {
-        Ok(jobs) => println!("Jobs: {:?}", jobs),
-        Err(e) => eprintln!("Error fetching jobs: {}", e),
-    }
+  // Retrieve job information
+  let jobs: serde_json::Value = AsyncQuery::query(&JobsInfo, &client).await?;
+  println!("Jobs: {:?}", jobs);
 
-    // Trigger a build with parameters
-    let params = json!({ "param1": "value1" });
-    if let Err(e) = client.trigger_build_with_params("MyJob", &params).await {
-        eprintln!("Failed to trigger build: {}", e);
-    }
+  Ok(())
+}
+
+```
+
+### Sync Example
+
+```rust
+use jenkins_sdk::{JenkinsSyncClient, Query, JobsInfo};
+
+fn main() -> Result<(), jenkins_sdk::JenkinsError> {
+    let client = JenkinsSyncClient::new("https://jenkins.example.com", "username", "api_token");
+
+    // Retrieve job information
+    let jobs: serde_json::Value = Query::query(&JobsInfo, &client)?;
+    println!("Jobs: {:?}", jobs);
+
+    Ok(())
 }
 ```
 
-## License
+## 📃 License
 
 This project is licensed under the MIT License.
