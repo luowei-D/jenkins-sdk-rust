@@ -17,7 +17,7 @@
 //!
 //! ### Async Example
 //!
-//! ```rust
+//! ```rust,no_run
 //! use jenkins_sdk::{JenkinsAsyncClient, AsyncQuery, JobsInfo};
 //!
 //! #[tokio::main]
@@ -37,7 +37,7 @@
 //!
 //! ### Sync Example
 //!
-//! ```rust
+//! ```rust,no_run
 //! use jenkins_sdk::{JenkinsSyncClient, Query, JobsInfo};
 //!
 //! fn main() -> Result<(), jenkins_sdk::JenkinsError> {
