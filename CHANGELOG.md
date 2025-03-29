@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.5] - 2025-03-29
+
+### 🚀 Features
+
+- Redesign SDK with structured endpoints, sync/async support, and improved Rust idiomatic API
+
 ## [0.1.4] - 2025-03-11
 
 ### 🐛 Bug Fixes
@@ -11,6 +17,7 @@ All notable changes to this project will be documented in this file.
 ### ⚙️ Miscellaneous Tasks
 
 - *(docs)* Update README.md
+- Release jenkins-sdk version 0.1.4
 
 ## [0.1.3] - 2025-03-01
 
